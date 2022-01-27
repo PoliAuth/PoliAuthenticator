@@ -1,0 +1,5 @@
+{"platforms":[
+  {"os":"macOS","latest_version":"1.0.6","download_url":"https://github.com/PoliAuth/PoliAuthenticator"},
+  {"os":"win","latest_version":"1.0.0","download_url":""},
+  {"os":"linux","latest_version":"1.0.0","download_url":""}
+]}

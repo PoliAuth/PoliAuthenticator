@@ -1,0 +1,10 @@
+{
+    "extension_name": {
+        "message": "PoliAuthenticatorWebExtension",
+        "description": "This is the safari web extension for PoliAuthenticator"
+    },
+    "extension_description": {
+        "message": "This is PoliAuthenticatorWebExtension. You should tell us what your extension does here.",
+        "description": "Description of what the extension does."
+    }
+}

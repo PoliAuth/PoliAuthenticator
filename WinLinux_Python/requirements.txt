@@ -1,0 +1,7 @@
+PyQt5~=5.15.6
+setuptools~=57.0.0
+requests~=2.26.0
+PyQtWebEngine~=5.15.4
+cryptography~=36.0.0
+pyinstaller
+certifi
