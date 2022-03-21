@@ -1,23 +1,24 @@
-
 if (window.location.href.includes("aunicalogin.polimi.it/aunicalogin/aunicalogin.jsp")) {
-	setTimeout(function () {
-		try {
-            var s = document.createElement('script');
-                s.type = 'text/javascript';
-                var code = 'function performPoliAuth() { var myDate = new Date(); myDate.setMonth(myDate.getMonth() + 12); document.cookie = "poliAuthenticator=true;expires=" + myDate + ";domain=.polimi.it;path=/"; document.cookie = "poliAuthenticator_redirectUrl=" + window.location.href + ";expires=" + myDate + ";domain=.polimi.it;path=/"; window.location.href= "poliauth://open"; } ';
-                try {
-                  s.appendChild(document.createTextNode(code));
-                  document.body.appendChild(s);
-                } catch (e) {
-                  s.text = code;
-                  document.body.appendChild(s);
-                }
-			let buttonsContainer = document.getElementsByClassName('ingressoFederato')[0];
-			buttonsContainer.innerHTML = buttonsContainer.innerHTML +
-			'<br/><a href="#" onclick="performPoliAuth()" class="ingresso-federato-button ingresso-federato-button-size-m button-ingresso-federato"><span class="ingresso-federato-button-icon"><img src="http://matmacsystemfile.altervista.org/immagini/PoliAuthenticator_White.png" alt=""></span><span class="ingresso-federato-button-text">PoliAuthenticator</span></a>';
-			///aunicalogin/assets/cie/img/SVG/Logo_CIE_ID.svg
-		} catch (e){}
-	}, 100);
+	var done = false;
+	while (!done) {
+		done = setTimeout(function () {
+			try {
+				if (typeof browser === "undefined") {
+					var browser = chrome;
+				}
+				var s = document.createElement('script');
+				s.setAttribute('src', browser.runtime.getURL('helper.js'));
+				document.body.appendChild(s);
+				var buttonsContainer = document.getElementsByClassName('ingressoFederato')[0];
+				var fullURL = browser.runtime.getURL('assets/images/PoliAuthenticator_White.png');
+				var str = '<br/><a href="#" onclick="performPoliAuth()" class="ingresso-federato-button ingresso-federato-button-size-m button-ingresso-federato"><span class="ingresso-federato-button-icon"><img src="' + fullURL + '" alt=""></span><span class="ingresso-federato-button-text">PoliAuthenticator</span></a>';
+				buttonsContainer.innerHTML = buttonsContainer.innerHTML + str;
+				return true;
+			} catch (e) {
+				return false;
+			}
+		}, 10);
+	}
 }
 
 
@@ -29,7 +30,7 @@ if (window.location.href.includes("webeep.polimi.it/my")) {
 	if (parts.length === 2) {
 		c = parts.pop().split(';').shift();
 	}
-	if(c != undefined){
+	if (c != undefined){
 		var newHTML = document.open("text/html", "replace");
 		newHTML.write("<h1>Redirect...</h1>");
 		newHTML.close();
@@ -45,7 +46,7 @@ if (window.location.href.includes("webeep.polimi.it/my")) {
 			if (parts.length === 2) {
 				c = parts.pop().split(';').shift();
 			}
-			if (c != undefined){
+			if (c != undefined) {
 				document.cookie = "poliAuthenticator_redirectUrl=no;expires=" + d + ";domain=.polimi.it;path=/";
 				window.location.href = c;
 			} else {
@@ -56,13 +57,29 @@ if (window.location.href.includes("webeep.polimi.it/my")) {
 }
 
 
-if (window.location.href.includes("https://idbroker.webex.com/idb/saml2/jsp/doSSO.jsp")) {
-	setTimeout(function () {
-		try {
-			var button = document.getElementById('IDButton2');
-            document.getElementById('IDToken1').value = "diego.aldarese@mail.polimi.it";
-			button.removeAttribute('disabled');
-			button.click();
-		} catch (e){}
-	}, 100);
+if (window.location.href.includes("idbroker.webex.com/idb/saml2/jsp/doSSO.jsp")) {
+	var done = false;
+	while (!done) {
+		done = setTimeout(function () {
+			try {
+				if (typeof browser === "undefined") {
+					var browser = chrome;
+				}
+				browser.storage.sync.get('email', function(data) {
+					var txtValue = data.email.toString();
+					if (txtValue !== "undefined") {
+						document.getElementById('IDToken1').value = data.email;
+					}
+				});
+				setTimeout(function () {
+					var submitButton = document.getElementById('IDButton2');
+					submitButton.removeAttribute('disabled');
+					submitButton.click();
+				}, 100);
+				return true;
+			} catch (e) {
+				return false;
+			}
+		}, 10);
+	}
 }

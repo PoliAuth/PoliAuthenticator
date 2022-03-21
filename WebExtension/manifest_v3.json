@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "PoliAuthenticator WebExtension",
+  "description": "Web extension for PoliAuthenticator",
+  "version": "1.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery.min.js",
+        "content.js"
+      ]
+    }
+  ],
+  "homepage_url": "https://github.com/poliauth",
+  "permissions": [
+    "https://webeep.polimi.it/my/*",
+		"https://aunicalogin.polimi.it/aunicalogin/*",
+		"https://idbroker.webex.com/idb/saml2/jsp/*",
+    "storage"
+  ],
+  "icons": {
+    "16": "assets/images/icon16.png",
+    "24": "assets/images/icon24.png",
+    "32": "assets/images/icon32.png",
+    "48": "assets/images/icon48.png",
+    "128": "assets/images/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/images/PoliAuthenticator_White.png",
+        "helper.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "PoliAuthenticator WebExtension",
+    "default_icon": {
+      "16": "assets/images/icon16.png",
+      "24": "assets/images/icon24.png",
+      "32": "assets/images/icon32.png",
+      "48": "assets/images/icon48.png",
+      "128": "assets/images/icon128.png"
+    },
+    "default_popup": "ui.html"
+  }
+}
