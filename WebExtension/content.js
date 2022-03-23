@@ -6,13 +6,13 @@ if (window.location.href.includes("aunicalogin.polimi.it/aunicalogin/aunicalogin
 				if (typeof browser === "undefined") {
 					var browser = chrome;
 				}
-				var s = document.createElement('script');
-				s.setAttribute('src', browser.runtime.getURL('helper.js'));
-				document.body.appendChild(s);
 				var buttonsContainer = document.getElementsByClassName('ingressoFederato')[0];
-				var fullURL = browser.runtime.getURL('assets/images/PoliAuthenticator_White.png');
-				var str = '<br/><a href="#" onclick="performPoliAuth()" class="ingresso-federato-button ingresso-federato-button-size-m button-ingresso-federato"><span class="ingresso-federato-button-icon"><img src="' + fullURL + '" alt=""></span><span class="ingresso-federato-button-text">PoliAuthenticator</span></a>';
+				var icon = browser.runtime.getURL('assets/images/PoliAuthenticator_White.png');
+				var str = '<br/><button id="poliAuthButton" class="ingresso-federato-button ingresso-federato-button-size-m button-ingresso-federato"><span class="ingresso-federato-button-icon"><img src="' + icon + '" alt=""></span><span class="ingresso-federato-button-text">PoliAuthenticator</span></button>';
 				buttonsContainer.innerHTML = buttonsContainer.innerHTML + str;
+				document.getElementById('poliAuthButton').addEventListener('click', function() {
+					window.location.href = browser.runtime.getURL('loading.html') + "?webeep=1";
+				});
 				return true;
 			} catch (e) {
 				return false;
@@ -31,9 +31,14 @@ if (window.location.href.includes("webeep.polimi.it/my")) {
 		c = parts.pop().split(';').shift();
 	}
 	if (c != undefined){
-		var newHTML = document.open("text/html", "replace");
-		newHTML.write("<h1>Redirect...</h1>");
-		newHTML.close();
+		if (typeof browser === "undefined") {
+			var browser = chrome;
+		}
+		document.getElementsByTagName("html")[0].innerHTML = '';
+		var iframe = document.createElement('iframe');
+		iframe.src = browser.runtime.getURL('loading.html');
+		iframe.style = 'width: 100%; height: 10000px; border: none;';
+		document.body.appendChild(iframe);
 		setTimeout(function() {
 			var d = new Date()
 			d.setHours(d.getHours() - 2);
@@ -65,10 +70,10 @@ if (window.location.href.includes("idbroker.webex.com/idb/saml2/jsp/doSSO.jsp"))
 				if (typeof browser === "undefined") {
 					var browser = chrome;
 				}
-				browser.storage.sync.get('email', function(data) {
+				browser.storage.local.get('email', function(data) {
 					var txtValue = data.email.toString();
 					if (txtValue !== "undefined") {
-						document.getElementById('IDToken1').value = data.email;
+						document.getElementById('IDToken1').value = txtValue;
 					}
 				});
 				setTimeout(function () {
