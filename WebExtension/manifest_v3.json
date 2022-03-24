@@ -6,7 +6,9 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "https://webeep.polimi.it/my/*",
+        "https://aunicalogin.polimi.it/aunicalogin/*",
+        "https://idbroker.webex.com/idb/saml2/jsp/*"
       ],
       "js": [
         "content.js"
@@ -15,10 +17,12 @@
   ],
   "homepage_url": "https://github.com/poliauth",
   "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
     "https://webeep.polimi.it/my/*",
 		"https://aunicalogin.polimi.it/aunicalogin/*",
-		"https://idbroker.webex.com/idb/saml2/jsp/*",
-    "storage"
+		"https://idbroker.webex.com/idb/saml2/jsp/*"
   ],
   "icons": {
     "16": "assets/images/icon16.png",
@@ -31,7 +35,7 @@
     {
       "resources": [
         "assets/images/PoliAuthenticator_White.png",
-        "helper.js"
+        "loading.html"
       ],
       "matches": [
         "<all_urls>"

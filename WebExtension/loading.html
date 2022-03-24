@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="helper.js"></script>
+    <script src="content.js"></script>
     <img class="logo" src="assets/images/icon128.png"/>
     <h4>PoliAuthenticator</h4>
-    <p class="text" id="loadingMessage">Let me do my magic</p>
+    <p class="text">Let me do my magic... If you had time to continue reading it means I'm launching the PoliAuthenticator desktop app, please click allow in the browser's window and wait a bit. If you only installed this extension please <a href="https://github.com/poliauth">download the app.</a></p>
     <img class="loading" src="assets/images/loading.gif"/>
 <style>
 * { 
@@ -27,7 +27,7 @@ img {
 .loading {
     width: 200px;
     height: 150px;
-    top: 30%;
+    top: 33%;
     bottom: 0;
 }
 h4 {
@@ -40,6 +40,7 @@ h4 {
     color: darkblue;
 }
 .text {
+    mix-blend-mode: difference;
     position: absolute;
     top: 53%;
     left: 50%;
