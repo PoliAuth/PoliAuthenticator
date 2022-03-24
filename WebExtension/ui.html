@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="helper.js"></script>
+    <img src="assets/images/icon128.png"/>
+    <h4>PoliAuthenticator</h4>
+    <p class="text">You need to set your email address to skip the page where Webex asks for it before loading recordings</p>
+    <form accept-charset=utf-8>
+        <input type="email" id="email" name="email" placeholder="name.surname@mail.polimi.it" value="">
+        <input class="button" type="submit" id="submit" value="Save">
+    </form>
+    <input class="button" type="submit" id="webeep" value="Go to WeBeep">
+<style>
+* { 
+    box-sizing: border-box;
+    font-family: 'Verdana';
+}
+img {
+    width: 128px;
+    height: 128px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 24px;
+}
+h4 {
+    text-align: center;
+    font-size: 24pt;
+    color: darkblue;
+    margin: 0%;
+    margin-top: 3%;
+}
+.text {
+    font-size: 12pt;
+    margin: 0%;
+    margin-top: 3%;
+}
+input {
+    width: 100%;
+    padding: 3%;
+    border-radius: 24px;
+    font-size: 12pt;
+    margin-top: 3%;
+}
+.button {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    border: none;
+}
+input.button:hover {
+    background-color: blue;
+}
+</style>
+</head>
+</html>
